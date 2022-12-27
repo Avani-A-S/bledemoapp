@@ -8,9 +8,12 @@ edition = "2021"
 [dependencies]
 log4rs = "1.2.0"
 chrono = "0.4.22"
-log = "0.4.0"
 tokio = { version = "1.23.0", features = ["full"] }
 btleplug = { version = "0.10" }
 thiserror = "1.0.31"
 pretty_env_logger = "0.4.0"
-log-panics = { version = "2", features = ["with-backtrace"]}
+
+#logging
+log = "*"
+log-panics="*"
+android_logger = "*"

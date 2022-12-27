@@ -10,7 +10,7 @@ use rust_core::core_scan;
 
 
 #[no_mangle]
-pub extern "system" fn Java_com_example_mybleapp_MainActivity_hello(env: JNIEnv, _class: JClass, input: JString) -> jstring {
+pub extern "C" fn Java_com_example_mybleapp_MainActivity_hello(env: JNIEnv, _class: JClass, input: JString) -> jstring {
     // First, we have to get the string out of java. Check out the `strings`
     // module for more info on how this works.
     let input: String = env
@@ -28,7 +28,7 @@ pub extern "system" fn Java_com_example_mybleapp_MainActivity_hello(env: JNIEnv,
 }
 
 #[no_mangle]
-pub extern "system" fn Java_com_example_mybleapp_MainActivity_scan(env: JNIEnv, _class: JClass) -> jstring {
+pub extern "C" fn Java_com_example_mybleapp_MainActivity_scan(env: JNIEnv, _class: JClass) -> jstring {
 
     let output = env
         .new_string(format!("Hello, {}", core_scan()))

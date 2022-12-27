@@ -8,6 +8,7 @@ pub fn core_test(input: String) -> String {
 }
 
 pub fn core_scan() -> String {
+
     scan().unwrap();
 
     let owned_string: String = "Scan Complete!\n".to_owned();

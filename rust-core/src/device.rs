@@ -1,8 +1,5 @@
-use log::LevelFilter;
-use log4rs::append::file::FileAppender;
-use log4rs::encode::pattern::PatternEncoder;
-use log4rs::config::{Appender, Config, Root};
 
+#![allow(unused_imports)]
 use std::error::Error;
 use std::time::Duration;
 use tokio::time;
@@ -10,17 +7,32 @@ use tokio::time;
 use btleplug::api::{Central, Manager as _, Peripheral, ScanFilter};
 use btleplug::platform::Manager;
 
+use android_logger::Config;
+use log::Level;
 
 #[tokio::main]
 pub async fn scan() -> Result<(), Box<dyn Error>> {
-    pretty_env_logger::init();
 
+    #[cfg(target_os = "android")]
+    android_logger::init_once(
+        Config::default()
+            .with_min_level(Level::Info)
+            .with_tag("Rust"),
+    );
+    log_panics::init();
+
+    log::info!("device.rs -> scan(): Initialize Manager");
     let manager = Manager::new().await?;
+
+    log::info!("device.rs -> scan(): Find Adapter");
     let adapter_list = manager.adapters().await.expect("Can't find adapter.");
+
     if adapter_list.is_empty() {
+        log::info!("device.rs -> scan(): No Bluetooth adapters found");
         eprintln!("No Bluetooth adapters found");
     }
 
+    log::info!("device.rs -> scan(): Iterate through adapter");
     for adapter in adapter_list.iter() {
         println!("Starting scan on {}...", adapter.adapter_info().await?);
         adapter
@@ -173,31 +185,4 @@ pub async fn disconnect(name: String) -> Result<(), Box<dyn Error>> {
         }
     }
     Ok(())
-}
-
-pub fn datalog(filepath: String, message: String) -> Result<(), Box<dyn Error>> {
-    std::env::set_var("RUST_LOG", "warn");
-    std::env::set_var("RUST_LOG", "info");
-    std::env::set_var("RUST_LOG", "debug");
-    std::env::set_var("RUST_LOG", "trace");
-
-    let log_line_pattern = "{d(%Y-%m-%d %H:%M:%S)} | {({l}):5.5} | {m}{n}";
-    let logfile = FileAppender::builder()
-        .encoder(Box::new(PatternEncoder::new(log_line_pattern)))
-        .build(filepath)?;
-
-    let config = Config::builder()
-        .appender(Appender::builder().build("logfile", Box::new(logfile)))
-        .build(Root::builder()
-                   .appender("logfile")
-                   .build(LevelFilter::Debug))?;
-
-    log4rs::init_config(config)?;
-    log::debug!("{}", message);
-
-    Ok(())
-}
-
-pub fn services() {
-
 }

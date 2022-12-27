@@ -11,15 +11,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rust-core = {path= "../rust-core"}
-log4rs = "1.2.0"
-chrono = "0.4.22"
-log = "0.4.0"
-tokio = { version = "1.20.1", features = ["macros", "rt", "rt-multi-thread"] }
-btleplug = { version = "0.10", features = ["serde"] }
-thiserror = "1.0.31"
-pretty_env_logger = "0.4.0"
-log-panics = { version = "2", features = ["with-backtrace"]}
 
 [target.'cfg(target_os="android")'.dependencies]
 jni = { version = "0.20.0", default-features = false }
-cargo-ndk = "2.12.2"
