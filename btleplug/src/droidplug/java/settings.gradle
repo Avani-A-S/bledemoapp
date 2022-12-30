@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        google()
+    }
+    plugins {
+        id 'com.android.library' version '4.2.2'
+    }
+}
+
+rootProject.name = 'droidplug'
+//sourceControl {
+//    gitRepository("https://github.com/deviceplug/jni-utils-rs.git") {
+//        producesModule("io.github.gedgygedgy.rust:jni-utils")
+//    }
+//}
+

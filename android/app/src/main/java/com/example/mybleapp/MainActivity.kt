@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         val scanBtn: Button = findViewById<Button>(R.id.scanBtn)
         scanBtn.setOnClickListener {
             val simpleDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-            val currentDate = simpleDate.format(Date())
             var text = scan();
             Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
         }
