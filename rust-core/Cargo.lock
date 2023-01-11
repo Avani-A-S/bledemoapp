@@ -139,6 +139,8 @@ dependencies = [
  "log",
  "objc",
  "once_cell",
+ "serde",
+ "serde_bytes",
  "static_assertions",
  "thiserror",
  "tokio",
@@ -930,14 +932,20 @@ name = "rust-core"
 version = "0.1.0"
 dependencies = [
  "android_logger",
+ "async-trait",
  "btleplug",
  "chrono",
+ "futures",
+ "jni",
  "log",
  "log-panics",
  "log4rs",
  "pretty_env_logger",
+ "static_assertions",
  "thiserror",
  "tokio",
+ "tokio-stream",
+ "uuid",
 ]
 
 [[package]]
@@ -996,6 +1004,15 @@ dependencies = [
  "serde",
  "thiserror",
  "xml-rs",
+]
+
+[[package]]
+name = "serde_bytes"
+version = "0.11.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "718dc5fff5b36f99093fc49b280cfc96ce6fc824317783bff5a1fed0c7a64819"
+dependencies = [
+ "serde",
 ]
 
 [[package]]
@@ -1225,6 +1242,9 @@ name = "uuid"
 version = "1.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "422ee0de9031b5b948b97a8fc04e3aa35230001a722ddd27943e0be31564ce4c"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "walkdir"

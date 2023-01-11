@@ -3,16 +3,16 @@
 :: Build the Rust core lib
 cd ..\rust-core
 cargo clean
-cargo build
+cargo build --profile=release-with-debug
 
 :: Building the Rust library for Android
 cd ..\rust-android
 cargo clean
 if exist "./target" rd /s /q "./target"
-cargo build --target aarch64-linux-android --release
-cargo build --target armv7-linux-androideabi --release
-cargo build --target i686-linux-android --release
-cargo build --target x86_64-linux-android --release
+cargo build --target aarch64-linux-android --profile=release-with-debug
+cargo build --target armv7-linux-androideabi --profile=release-with-debug
+cargo build --target i686-linux-android --profile=release-with-debug
+cargo build --target x86_64-linux-android --profile=release-with-debug
 
 :: Including the Rust library into the Android app
 set "JNI_LIBS=.\android\app\src\main\jniLibs"
@@ -31,8 +31,8 @@ md "%JNI_LIBS_X68%"
 md "%JNI_LIBS_X86_64%"
 md "%JNI_LIBS_AARCH64%"
 
-copy ".\rust-android\target\aarch64-linux-android\release\*.so" "%JNI_LIBS_ARM64_V8A%"
-copy ".\rust-android\target\aarch64-linux-android\release\*.so" "%JNI_LIBS_AARCH64%"
-copy ".\rust-android\target\armv7-linux-androideabi\release\*.so" "%JNI_LIBS_ARMEABI_V7A%"
-copy ".\rust-android\target\i686-linux-android\release\*.so" "%JNI_LIBS_X68%"
-copy ".\rust-android\target\x86_64-linux-android\release\*.so" "%JNI_LIBS_X86_64%"
+copy ".\rust-android\target\aarch64-linux-android\release-with-debug\*.so" "%JNI_LIBS_ARM64_V8A%"
+copy ".\rust-android\target\aarch64-linux-android\release-with-debug\*.so" "%JNI_LIBS_AARCH64%"
+copy ".\rust-android\target\armv7-linux-androideabi\release-with-debug\*.so" "%JNI_LIBS_ARMEABI_V7A%"
+copy ".\rust-android\target\i686-linux-android\release-with-debug\*.so" "%JNI_LIBS_X68%"
+copy ".\rust-android\target\x86_64-linux-android\release-with-debug\*.so" "%JNI_LIBS_X86_64%"

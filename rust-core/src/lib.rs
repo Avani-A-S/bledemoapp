@@ -1,16 +1,17 @@
 pub mod device;
-
-use device::scan;
+use device::{scan, connect};
 
 pub fn core_test(input: String) -> String {
-    let owned_string: String = "from Rust Library!\n".to_owned();
+    let owned_string: String = "from Rust!\n".to_owned();
     return format!("{}{}", owned_string, input);
 }
 
 pub fn core_scan() -> String {
+    let devices: String = scan().unwrap();
+    return format!("{}", devices);
+}
 
-    scan().unwrap();
-
-    let owned_string: String = "Scan Complete!\n".to_owned();
-    return format!("{}", owned_string);
+pub fn core_connect(device: String) -> String {
+    let result: String = connect(device).unwrap();
+    return format!("{}", result);
 }

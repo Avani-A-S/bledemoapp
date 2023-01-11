@@ -46,9 +46,9 @@ checksum = "2cb2f989d18dd141ab8ae82f64d1a8cdd37e0840f73a406896cf5e99502fab61"
 
 [[package]]
 name = "arc-swap"
-version = "1.5.1"
+version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "983cd8b9d4b02a6dc6ffa557262eb5858a27a0038ffffe21a0f133eaa819a164"
+checksum = "bddcadddf5e9015d310179a59bb28c4d4b9920ad0f11e8e14dbadf654890c9a6"
 
 [[package]]
 name = "async-trait"
@@ -133,12 +133,14 @@ dependencies = [
  "dashmap",
  "dbus",
  "futures",
- "jni 0.19.0",
+ "jni",
  "jni-utils",
  "libc",
  "log",
  "objc",
  "once_cell",
+ "serde",
+ "serde_bytes",
  "static_assertions",
  "thiserror",
  "tokio",
@@ -624,20 +626,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "jni"
-version = "0.20.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "039022cdf4d7b1cf548d31f60ae783138e5fd42013f6271049d7df7afadef96c"
-dependencies = [
- "cesu8",
- "combine",
- "jni-sys",
- "log",
- "thiserror",
- "walkdir",
-]
-
-[[package]]
 name = "jni-sys"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -651,7 +639,7 @@ checksum = "0d3a00638470bedd9bcbea85292bef2207e6db984079db0bd70148a449cdb457"
 dependencies = [
  "dashmap",
  "futures",
- "jni 0.19.0",
+ "jni",
  "log",
  "once_cell",
  "static_assertions",
@@ -944,21 +932,28 @@ name = "rust-core"
 version = "0.1.0"
 dependencies = [
  "android_logger",
+ "async-trait",
  "btleplug",
  "chrono",
+ "futures",
+ "jni",
  "log",
  "log-panics",
  "log4rs",
  "pretty_env_logger",
+ "static_assertions",
  "thiserror",
  "tokio",
+ "tokio-stream",
+ "uuid",
 ]
 
 [[package]]
 name = "rust_android"
 version = "0.1.0"
 dependencies = [
- "jni 0.20.0",
+ "btleplug",
+ "jni",
  "rust-core",
 ]
 
@@ -1018,6 +1013,15 @@ dependencies = [
  "serde",
  "thiserror",
  "xml-rs",
+]
+
+[[package]]
+name = "serde_bytes"
+version = "0.11.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "718dc5fff5b36f99093fc49b280cfc96ce6fc824317783bff5a1fed0c7a64819"
+dependencies = [
+ "serde",
 ]
 
 [[package]]
@@ -1247,6 +1251,9 @@ name = "uuid"
 version = "1.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "422ee0de9031b5b948b97a8fc04e3aa35230001a722ddd27943e0be31564ce4c"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "walkdir"

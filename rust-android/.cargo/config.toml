@@ -1,0 +1,12 @@
+[target.aarch64-linux-android]
+ar = "../android-ndk-r22b/toolchains/llvm/prebuilt/windows-x86_64/aarch64-linux-android/bin/ar.exe"
+linker = "../android-ndk-r22b/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android28-clang.cmd"
+
+[target.armv7-linux-androideabi]
+linker = "../android-ndk-r22b/toolchains/llvm/prebuilt/windows-x86_64/bin/armv7a-linux-androideabi29-clang.cmd"
+
+[target.i686-linux-android]
+linker = "../android-ndk-r22b/toolchains/llvm/prebuilt/windows-x86_64/bin/i686-linux-android29-clang.cmd"
+
+[target.x86_64-linux-android]
+linker = "../android-ndk-r22b/toolchains/llvm/prebuilt/windows-x86_64/bin/x86_64-linux-android29-clang.cmd"

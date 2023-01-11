@@ -7,35 +7,39 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/clickBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="235dp"
-        android:text="Click me!"
+        android:id="@+id/scanBtn"
+        android:layout_width="393dp"
+        android:layout_height="56dp"
+        android:text="Scan for Devices"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.535" />
+        app:layout_constraintVertical_bias="0.01" />
 
-    <Button
-        android:id="@+id/scanBtn"
-        android:layout_width="109dp"
-        android:layout_height="52dp"
-        android:text="Scan"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/countLabel"
+        android:layout_width="392dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="4dp"
+        android:text=""
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clickBtn"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintTop_toBottomOf="@+id/scanBtn" />
 
     <ListView
-        android:layout_width="898dp"
-        android:layout_height="767dp"
-        app:layout_constraintBottom_toTopOf="@+id/clickBtn"
+        android:id="@+id/deviceList"
+        android:layout_width="395dp"
+        android:layout_height="606dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/countLabel"
+        app:layout_constraintVertical_bias="0.122"></ListView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
